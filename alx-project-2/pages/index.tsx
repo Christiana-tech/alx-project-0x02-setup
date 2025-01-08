@@ -9,7 +9,7 @@ const Home: React.FC = () => {
       </Head>
       <Header />
       <main className="flex justify-center items-center h-screen">
-        <p className="text-lg">Welcome to ALX Project 2! Explore and enjoy building.</p>
+        <p className="text-lg">Welcome to ALX Project 2! <br/> Explore and enjoy building.</p>
       </main>
     </>
   );
