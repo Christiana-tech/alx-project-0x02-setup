@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import Card from '../components/common/Card';
+import Card from '@/components/common/Card';
 
 const HomePage: React.FC = () => {
   return (
