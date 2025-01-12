@@ -16,3 +16,9 @@ export interface PostProps {
   content: string;
   userId: number;
 }
+export interface PostProps {
+  id: number;
+  title: string;
+  content: string; // Note: This maps to 'body' from the JSONPlaceholder API
+  userId: number;
+}

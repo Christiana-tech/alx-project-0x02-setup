@@ -1,32 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import PostCard from '@/components/common/PostCard';
 import Head from 'next/head';
+import { GetStaticProps } from 'next';
+import { PostProps } from '@/interfaces';
 
-interface Post {
-  id: number;
-  title: string;
-  body: string;
-  userId: number;
+interface PostsPageProps {
+  posts: PostProps[];
 }
 
-const PostsPage: React.FC = () => {
-  const [posts, setPosts] = useState<Post[]>([]);
-
-  useEffect(() => {
-    // Fetch posts from the JSONPlaceholder API
-    const fetchPosts = async () => {
-      try {
-        const response = await fetch('https://jsonplaceholder.typicode.com/posts');
-        const data = await response.json();
-        setPosts(data);
-      } catch (error) {
-        console.error('Error fetching posts:', error);
-      }
-    };
-
-    fetchPosts();
-  }, []);
-
+const PostsPage: React.FC<PostsPageProps> = ({ posts }) => {
   return (
     <>
       <Head>
@@ -40,7 +22,7 @@ const PostsPage: React.FC = () => {
               key={post.id}
               id={post.id}
               title={post.title}
-              content={post.body}
+              content={post.content}
               userId={post.userId}
             />
           ))}
@@ -48,6 +30,34 @@ const PostsPage: React.FC = () => {
       </main>
     </>
   );
+};
+
+// Fetch posts at build time using getStaticProps
+export const getStaticProps: GetStaticProps = async () => {
+  try {
+    const response = await fetch('https://jsonplaceholder.typicode.com/posts');
+    const data = await response.json();
+
+    const posts = data.map((post: any) => ({
+      id: post.id,
+      title: post.title,
+      content: post.body, // Map body to content for PostCard compatibility
+      userId: post.userId,
+    }));
+
+    return {
+      props: {
+        posts,
+      },
+    };
+  } catch (error) {
+    console.error('Failed to fetch posts:', error);
+    return {
+      props: {
+        posts: [],
+      },
+    };
+  }
 };
 
 export default PostsPage;
