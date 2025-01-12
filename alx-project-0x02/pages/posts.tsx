@@ -1,4 +1,5 @@
 import React from 'react';
+import Header from '@/components/layout/Header';
 import PostCard from '@/components/common/PostCard';
 import Head from 'next/head';
 import { GetStaticProps } from 'next';
