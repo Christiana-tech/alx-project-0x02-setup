@@ -1,7 +1,6 @@
 import React from 'react';
 import Head from 'next/head';
 import Header from '@/components/layout/Header';
-import Button from '@/components/common/Button';
 
 const AboutPage: React.FC = () => {
   return (
@@ -9,13 +8,10 @@ const AboutPage: React.FC = () => {
       <Head>
         <title>About Page</title>
       </Head>
-      <main className="flex flex-col items-center justify-center min-h-screen space-y-4">
-        <h1 className="text-3xl font-bold mb-6">About Us</h1>
-        <div className="flex space-x-4">
-          <Button label="Small Button" size="small" shape="rounded-sm" />
-          <Button label="Medium Button" size="medium" shape="rounded-md" />
-          <Button label="Large Button" size="large" shape="rounded-full" />
-        </div>
+      <Header />
+      <main className="flex flex-col items-center justify-center min-h-screen space-y-6">
+        <h1 className="text-3xl font-bold">About Us</h1>
+        {/* Add your content here */}
       </main>
     </>
   );
